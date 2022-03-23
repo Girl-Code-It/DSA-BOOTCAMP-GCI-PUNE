@@ -7,6 +7,9 @@
 
 //IF TARGET IS AN EVEN NUMBER THEN DIVIDE IT BY TWO, OTHERWISE INCREASE TARGET BY 1.
 
+#include <iostream>
+using namespace std;
+
 class Solution {
 public:
     int brokenCalc(int startValue, int target) {
@@ -23,3 +26,10 @@ public:
         return count+startValue-target;
     }
 };
+
+int main(){
+    Solution s;
+    int a = s.brokenCalc(2,3);
+    cout<<a;
+    return 0;
+}
