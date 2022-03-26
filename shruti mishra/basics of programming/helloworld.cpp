@@ -1,3 +1,4 @@
+// in os c folder
 #include<iostream>
 using namespace std;
 int main()
