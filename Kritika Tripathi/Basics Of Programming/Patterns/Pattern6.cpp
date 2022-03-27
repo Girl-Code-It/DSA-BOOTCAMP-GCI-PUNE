@@ -2,7 +2,8 @@
 using namespace std;
 
 int main(){
-    int n=5,j;
+    int n,j;
+    cin>>n;
     int scale = n/2+1;
 
     //write your code here
