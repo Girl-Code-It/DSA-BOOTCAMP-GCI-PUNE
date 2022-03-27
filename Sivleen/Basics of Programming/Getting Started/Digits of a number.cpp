@@ -1,19 +1,22 @@
 #include <iostream>
+#include <math.h>
 using namespace std;
 
 int main(int argc, char **argv){
     int n;
     cin >> n;
     
-    int reverse = 0;
+    int count = 0,orgNum=n;
     while(n>0){
-        reverse = reverse *10 + n%10;
         n=n/10;
+        count++;
     }
     
-    while(reverse>0){
-        cout<<reverse%10<<"\n";
-        reverse = reverse/10;
+    while(count>0){
+        int power=static_cast<int>(pow(10,count-1));
+        cout<<orgNum/power<<"\n";
+        count--;
+        orgNum = orgNum%power;
     }
     
 }
