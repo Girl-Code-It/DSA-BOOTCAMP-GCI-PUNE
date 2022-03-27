@@ -1,5 +1,5 @@
 import java.util.*;
-public class digits_of_a_number {
+public class reverse_a_number {
     public static void main(String[] args){
      
         Scanner scn = new Scanner(System.in);
