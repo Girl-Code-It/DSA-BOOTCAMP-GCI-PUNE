@@ -1,5 +1,5 @@
 package Tanisha.Basicsofprogramming.Gettingstarted;
-public class test2{
+public class variable{
     public static void main(String[] args){
         int a = 10; 
         int b = 20;
