@@ -1,6 +1,6 @@
 import java.util.*;
     
-    public class Main{
+    public class Digits{
     public static void digit(long n)
     {
         if((int)n==0)
