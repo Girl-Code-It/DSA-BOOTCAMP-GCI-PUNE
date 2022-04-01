@@ -1,3 +1,4 @@
+package tanisha.basicsofprogramming.gettingstarted;
  import java.util.*;
 
 public class gcd_and_lcm {

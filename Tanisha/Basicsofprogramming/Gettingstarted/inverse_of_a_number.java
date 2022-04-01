@@ -1,3 +1,4 @@
+package tanisha.basicsofprogramming.gettingstarted;
 import java.util.*;
 
 public class inverse_of_a_number{
