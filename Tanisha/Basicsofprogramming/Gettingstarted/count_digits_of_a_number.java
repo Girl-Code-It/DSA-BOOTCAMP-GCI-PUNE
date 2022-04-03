@@ -1,3 +1,4 @@
+package tanisha.basicsofprogramming.gettingstarted;
 import java.util.*;
   
   public class count_digits_of_a_number {
