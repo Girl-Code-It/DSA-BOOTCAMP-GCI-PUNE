@@ -21,7 +21,7 @@ public class Digitsofnumbr
            
             int ans = n/divisor;
             System.out.println(ans);
-            n = n%10;
+            n = n%divisor;
             divisor = divisor/10;
 
 
