@@ -20,4 +20,5 @@ int main(){
     else if(marks<=60){
         cout<<"Below par!";
     }
+    return 0;
 }
