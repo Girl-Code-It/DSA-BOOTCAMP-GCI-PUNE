@@ -1,4 +1,4 @@
-package Tanisha.Basicsofprogramming.Gettingstarted;
+package tanisha.basicsofprogramming.gettingstarted;
 public class variable{
     public static void main(String[] args){
         int a = 10; 

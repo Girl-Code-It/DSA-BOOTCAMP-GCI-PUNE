@@ -1,4 +1,4 @@
-package Tanisha.Basicsofprogramming.Gettingstarted;
+package tanisha.basicsofprogramming.gettingstarted;
 import java.util.*;
 public class Is_a_number_prime {
     public static void main(String[] args){
