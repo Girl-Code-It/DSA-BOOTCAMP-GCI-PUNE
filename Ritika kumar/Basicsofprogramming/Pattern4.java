@@ -8,7 +8,7 @@ public class Pattern4 {
                 System.out.print(" ");
             }
 
-            for(int k =5; k>i ;k++)
+            for(int k =5; k>i ;k--)
             {
                 System.out.print("*");
             }
