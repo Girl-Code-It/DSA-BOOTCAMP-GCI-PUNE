@@ -9,9 +9,9 @@ int main(){
     //write your code here
     int inv = 0, op=1;
     while(n>0){
-        int od = n%10;
-        int id = op;
-        int ip = od;
+        int od = n%10;//original digit
+        int id = op;//inversedigit = original place
+        int ip = od;//inverse place = original digit
         while(ip-1>0){
             id*=10;
             ip--;
