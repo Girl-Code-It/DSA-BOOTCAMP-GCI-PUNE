@@ -30,7 +30,7 @@ int main(int argc, char **argv)
             x--;
             cout << x << "\t";
         }
-        stars--;
+        stars++;
         spaces -= 2;
         cout << "\n";
     }
