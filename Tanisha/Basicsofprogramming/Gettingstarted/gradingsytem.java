@@ -1,4 +1,4 @@
-package Tanisha.Basicsofprogramming.Gettingstarted;
+package tanisha.basicsofprogramming.gettingstarted;
 import java.util.*;
 public class  gradingsytem {
     public static void main(String[] args) {

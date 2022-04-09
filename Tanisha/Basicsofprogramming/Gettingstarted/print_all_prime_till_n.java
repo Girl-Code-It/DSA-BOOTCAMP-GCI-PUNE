@@ -4,7 +4,7 @@ Take as input "high", the higher limit of range.
  For the range print all the primes numbers between low and high (both included).class test5 {
     
 */
-package Tanisha.Basicsofprogramming.Gettingstarted; 
+package tanisha.basicsofprogramming.gettingstarted; 
 import java.util.*;
 public class print_all_prime_till_n {
     public static void main(String[] args){

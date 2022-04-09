@@ -1,4 +1,4 @@
-package Tanisha.Basicsofprogramming.Gettingstarted;
+package tanisha.basicsofprogramming.gettingstarted;
 
 public class IncrementOperator{
   public static void main(String[] args){
