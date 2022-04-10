@@ -1,5 +1,4 @@
 #include <iostream>
-#include <algorithm>
 using namespace std;
 
 int main()
@@ -21,16 +20,36 @@ int main()
 
     int size = n1 > n2 ? n1 : n2;
     int sum[size];
+    int carry = 0;
 
-    reverse(a1, a1 + n1);
-    reverse(a2, a2 + n2);
-    // write your code here
-    for (int i = 0; i < size; i++)
+    int i = n1 - 1;
+    int j = n2 - 1;
+    int k = size - 1;
+
+    while (k >= 0)
     {
-        sum[i] = a1[i] + a2[i];
+        int d = carry;
+        if (i >= 0)
+        {
+            d += a1[i];
+        }
+        if (j >= 0)
+        {
+            d += a2[j];
+        }
+        carry = d / 10;
+        d = d % 10;
+        sum[k] = d;
+        i--;
+        j--;
+        k--;
     }
-    for (int i = size - 1; i >= 0; i)
+    if (carry != 0)
     {
-        cout << sum[i] << "\n";
+        cout << carry << "\n";
+    }
+    for (int val : sum)
+    {
+        cout << val << "\n";
     }
 }
