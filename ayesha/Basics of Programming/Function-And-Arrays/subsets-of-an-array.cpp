@@ -1,26 +1,45 @@
-
 #include <iostream>
 #include <math.h>
 using namespace std;
 
-void PrintAllSubsets(int *arr, int n)
+int dectobin(int n)
 {
-    int snum = 0;
-    while (snum < pow(2, n))
+    int sum = 0;
+    int count = -1;
+    while (n != 0)
     {
-        for (int i = 0; i < n; i++)
+        count++;
+        int rem = n % 2;
+        n = n / 2;
+        int res = rem * pow(10, count);
+        sum += res;
+    }
+    return sum;
+}
+
+void subarray(int arr[], int n)
+{
+    int subsets = pow(2, n);
+    for (int i = 0; i < subsets; i++)
+    {
+        int bn = dectobin(i);
+        int div = pow(10, n - 1);
+        for (int j = 0; j < n; j++)
         {
-            if ((snum & (1 << i)) != 0)
-            {
-                cout << arr[i] << "\t";
-            }
-            else
+            int q = bn / div;
+            int r = bn % div;
+            if (q == 0)
             {
                 cout << "-\t";
             }
+            else
+            {
+                cout << arr[j] << "\t";
+            }
+            bn = r;
+            div /= 10;
         }
-        cout << endl;
-        snum++;
+        cout << "\n";
     }
 }
 
@@ -33,6 +52,6 @@ int main()
     {
         cin >> arr[i];
     }
-    PrintAllSubsets(arr, n);
+    subarray(arr, n);
     return 0;
 }
