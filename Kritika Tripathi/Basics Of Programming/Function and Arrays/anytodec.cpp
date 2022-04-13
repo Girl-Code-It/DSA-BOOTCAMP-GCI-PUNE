@@ -2,7 +2,7 @@
 using namespace std;
 int AnyToDec(int n, int b) {
 //write your code here.
-int temp = n, base=1, rem, res=0;
+int temp = n, base=1, rem, res;
 while(temp>0){
     rem = temp%10;//1 //0 //0 //1 //1 //1
     rem*=base;//1 //0 //0 //8 //16 //32
