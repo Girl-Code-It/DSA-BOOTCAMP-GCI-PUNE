@@ -1,15 +1,13 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <cmath>
 using namespace std;
 
-bool isPrime(int num)
+bool isPrime(int n)
 {
-    if (num <= 1)
+    for (int i = 2; i <= sqrt(n); i++)
     {
-        return false;
-    }
-    for (int i = 2; i <= sqrt(num); i++)
-    {
-        if (num % i == 0)
+        if (n % i == 0)
         {
             return false;
         }
@@ -20,22 +18,27 @@ bool isPrime(int num)
 void removeprimes(vector<int> v)
 {
     // write your code here
-    int vecLength = v.size();
-    for (int i = vecLength - 1; i >= 0; i--)
+    vector<int> arr;
+    int n = v.size();
+    for (int i = 0; i < n; i++)
     {
-        if (isPrime(v[i]))
+        if (!isPrime(v[i]))
         {
-            v.erase(v.begin() + i);
+            arr.push_back(v[i]);
         }
     }
-
     cout << "[";
-    for (int i = 0; i < v.size(); i++)
+    for (int i = 0; i < arr.size(); i++)
     {
-
-        cout << v[i];
-        if (i < v.size() - 1)
+        cout << arr[i];
+        if (i < arr.size() - 1)
+        {
             cout << ", ";
+        }
+        else
+        {
+            cout << "";
+        }
     }
     cout << "]";
 }
