@@ -1,136 +1,138 @@
-// #include <iostream>
-// #include <vector>
-// #include <algorithm>
-// using namespace std;
+#include <bits/stdc++.h>
+using namespace std;
 
-// void reverse(vector<int> &oned, int start, int end)
-// {
-//     while (start < end)
-//     {
-//         int temp = oned[start];
-//         oned[start] = oned[end];
-//         oned[end] = temp;
-//         start++;
-//         end--;
-//     }
-// }
-// void rotate(vector<int> &arr, int r)
-// {
-//     int s = arr.size();
-//     r = r % s;
-//     if (r < 0)
-//     {
-//         r += s;
-//     }
-//     reverse(arr, 0, arr.size() - 1 - r);
-//     reverse(arr, arr.size() - r, arr.size() - 1);
-//     reverse(arr, 0, arr.size() - 1);
-// }
+void display(vector<vector<int>> &arr)
+{
+    for (int i = 0; i < arr.size(); i++)
+    {
+        for (int j = 0; j < arr[0].size(); j++)
+        {
+            cout << arr[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
 
-// int *fillOneDFromShell(vector<vector<int>> &arr, int s)
-// {
-//     int minR = s - 1;
-//     int minC = s - 1;
-//     int maxR = arr.size() - s;
-//     int maxC = arr[0].size() - s;
-//     int size = 2 * (maxR - minR + maxC - minC);
-//     vector<int> arr2(size);
-//     int count = 0;
+void reverse(vector<int> oned, int start, int end)
+{
+    while (start <= end)
+    {
+        int temp = oned[start];
+        oned[start] = oned[end];
+        oned[end] = temp;
+    }
+    start++;
+    end--;
+}
 
-//     //   left wall
-//     for (int i = minR; i <= maxR; i++)
-//     {
-//         arr2[count] = arr[i][minC];
-//         count++;
-//     }
-//     // bottom wall
-//     for (int j = minC + 1; j <= maxC; j++)
-//     {
-//         arr2[count] = arr[minR][j];
-//         count++;
-//     }
-//     // right wall
-//     for (int i = maxR - 1; i >= minR; i--)
-//     {
-//         arr2[count] = arr[i][maxC];
-//         count++;
-//     }
+void rotate(vector<int> &oned, int r)
+{
+    int sz = oned.size();
+    r = r % sz;
+    if (r < 0)
+    {
+        r += sz;
+    }
+    reverse(oned, 0, oned.size() - 1 - r);
+    reverse(oned, oned.size() - r, oned.size() - 1);
+    reverse(oned, 0, oned.size() - 1);
+}
 
-//     // top wall
-//     for (int j = maxC - 1; j >= minC + 1; j--)
-//     {
-//         arr2[count] = arr[minR][j];
-//         count++;
-//     }
-//     return arr2;
-// }
-// void fillshellFromOneD(vector<vector<int>> &arr, int s, vector<int> &arr2)
-// {
-//     int minR = s - 1;
-//     int minC = s - 1;
-//     int maxR = arr.size() - s;
-//     int maxC = arr[0].size() - s;
-//     int count = 0;
+vector <int> fillOnedFromShell(vector<vector<int>> &arr, int s)
+{
+    int minR = s - 1;
+    int minC = s - 1;
+    int maxR = arr.size() - s;
+    int maxC = arr[0].size() - s;
+    int size = 2 * (maxR - minR + maxC - minC);
+    vector<int> arr2(size);
+    int count = 0;
 
-//     //   left wall
-//     for (int i = minR; i <= maxR; i++)
-//     {
-//         arr[i][minC] = arr2[count];
-//         count++;
-//     }
-//     // bottom wall
-//     for (int j = minC + 1; j <= maxC; j++)
-//     {
-//         arr[minR][j] = arr2[count];
-//         count++;
-//     }
-//     // right wall
-//     for (int i = maxR - 1; i >= minR; i--)
-//     {
-//         arr[i][maxC] = arr2[count];
-//         count++;
-//     }
+    //   left wall
+    for (int i = minR; i <= maxR; i++)
+    {
+        arr2[count] = arr[i][minC];
+        count++;
+    }
+    // bottom wall
+    for (int j = minC + 1; j <= maxC; j++)
+    {
+        arr2[count] = arr[minR][j];
+        count++;
+    }
+    // right wall
+    for (int i = maxR - 1; i >= minR; i--)
+    {
+        arr2[count] = arr[i][maxC];
+        count++;
+    }
 
-//     // top wall
-//     for (int j = maxC - 1; j >= minC + 1; j--)
-//     {
-//         arr[minR][j] = arr2[count];
-//         count++;
-//     }
-// }
+    // top wall
+    for (int j = maxC - 1; j >= minC + 1; j--)
+    {
+        arr2[count] = arr[minR][j];
+        count++;
+    }
+    return arr2;
+}
 
-// void rotateShell(vector<vector<int>> &arr, int s, int r)
-// {
-//     vector<int> oned = fillOneDFromShell(arr, s);
-//     rotate(oned, r);
-//     fillshellFromOneD(arr, s, oned);
-// }
+void fillShellFromOned(vector<vector<int>> &arr, int s, vector<int> &arr2)
+{
+    int minR = s - 1;
+    int minC = s - 1;
+    int maxR = arr.size() - s;
+    int maxC = arr[0].size() - s;
+    int count = 0;
 
-// void create(vector<int> arr, int n, int m)
-// {
-//     for (int i = 0; i < n; i++)
-//     {
-//         cin >> arr[i];
-//     }
-// }
+    //   left wall
+    for (int i = minR; i <= maxR; i++)
+    {
+        arr[i][minC] = arr2[count];
+        count++;
+    }
+    // bottom wall
+    for (int j = minC + 1; j <= maxC; j++)
+    {
+        arr[minR][j] = arr2[count];
+        count++;
+    }
+    // right wall
+    for (int i = maxR - 1; i >= minR; i--)
+    {
+        arr[i][maxC] = arr2[count];
+        count++;
+    }
 
-// void display(vector<int> arr, int n, int m)
-// {
-//     for (int i = 0; i < n; i++)
-//     {
-//         cout << arr[i] << " ";
-//     }
-// }
+    // top wall
+    for (int j = maxC - 1; j >= minC + 1; j--)
+    {
+        arr[minR][j] = arr2[count];
+        count++;
+    }
+}
 
-// int main()
-// {
-//     int n, m;
-//     cin >> n >> m;
-//     vector<vector<int>> arr(n, vector<int>(m));
-//     create(arr, n, m);
-//     int s, r;
-//     cin >> s >> r;
-//     rotateShell(arr, s, r);
-//     display(arr, n, m);
-//     return 0;
-// }
+void rotateShell(vector<vector<int>> &arr, int s, int r)
+{
+    vector<int> oned = fillOnedFromShell(arr, s);
+    rotate(oned, r);
+    fillShellFromOned(arr, s, oned);
+}
+
+int main()
+{
+    int n, m, s, r;
+    cin >> n >> m;
+    vector<vector<int>> arr(n, vector<int>(m));
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            cin >> arr[i][j];
+        }
+    }
+
+    cin >> s >> r;
+    rotateShell(arr,s,r);
+    display(arr);
+    return 0;
+}
