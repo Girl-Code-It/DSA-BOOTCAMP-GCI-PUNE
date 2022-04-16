@@ -1,138 +1,80 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
-void display(vector<vector<int>> &arr)
-{
-    for (int i = 0; i < arr.size(); i++)
-    {
-        for (int j = 0; j < arr[0].size(); j++)
-        {
+int main(){
+    int n,m,s,r;
+    cin >> n>>m;
+    vector<vector<int>> arr(n,vector<int> (m));
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            cin >> arr[i][j];
+        }
+    }
+    cin >> s >> r;
+    
+    //ring rotate
+    
+    //fill 1D
+    int rmin=s-1,rmax=n-s,cmin=s-1,cmax=m-s,count=0,total=2*((rmax-rmin)+(cmax-cmin));
+    int a[total];
+    for(int i=rmin,j=cmin;j<=cmax && count<total;j++){
+        a[count]=arr[i][j];
+        count++;
+    }
+    rmin++;
+    for(int i=rmin,j=cmax;i<=rmax && count<total;i++){
+        a[count]=arr[i][j];
+        count++;
+    }
+    cmax--;
+    for(int i=rmax,j=cmax;j>=cmin && count<total;j--){
+        a[count]=arr[i][j];
+        count++;
+    }
+    rmax--;
+    for(int i=rmax,j=cmin;i>=rmin && count<total;i--){
+        a[count]=arr[i][j];
+        count++;
+    }
+    
+    
+    //rotate the array
+    r=r%total;
+    if(r<0){
+        r=r+total;
+    }
+    rotate(a, a + (r % total), a + total);
+    
+    //fill 2D
+    rmin=s-1,rmax=n-s,cmin=s-1,cmax=m-s,count=0,total=2*((rmax-rmin)+(cmax-cmin));
+    for(int i=rmin,j=cmin;j<=cmax && count<total;j++){
+        arr[i][j]=a[count];
+        count++;
+    }
+    rmin++;
+    for(int i=rmin,j=cmax;i<=rmax && count<total;i++){
+        arr[i][j]=a[count];
+        count++;
+    }
+    cmax--;
+    for(int i=rmax,j=cmax;j>=cmin && count<total;j--){
+        arr[i][j]=a[count];
+        count++;
+    }
+    rmax--;
+    for(int i=rmax,j=cmin;i>=rmin && count<total;i--){
+        arr[i][j]=a[count];
+        count++;
+    }
+    
+    
+    
+    //display array
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
             cout << arr[i][j] << " ";
         }
         cout << endl;
     }
-}
-
-void reverse(vector<int> oned, int start, int end)
-{
-    while (start <= end)
-    {
-        int temp = oned[start];
-        oned[start] = oned[end];
-        oned[end] = temp;
-    }
-    start++;
-    end--;
-}
-
-void rotate(vector<int> &oned, int r)
-{
-    int sz = oned.size();
-    r = r % sz;
-    if (r < 0)
-    {
-        r += sz;
-    }
-    reverse(oned, 0, oned.size() - 1 - r);
-    reverse(oned, oned.size() - r, oned.size() - 1);
-    reverse(oned, 0, oned.size() - 1);
-}
-
-vector <int> fillOnedFromShell(vector<vector<int>> &arr, int s)
-{
-    int minR = s - 1;
-    int minC = s - 1;
-    int maxR = arr.size() - s;
-    int maxC = arr[0].size() - s;
-    int size = 2 * (maxR - minR + maxC - minC);
-    vector<int> arr2(size);
-    int count = 0;
-
-    //   left wall
-    for (int i = minR; i <= maxR; i++)
-    {
-        arr2[count] = arr[i][minC];
-        count++;
-    }
-    // bottom wall
-    for (int j = minC + 1; j <= maxC; j++)
-    {
-        arr2[count] = arr[minR][j];
-        count++;
-    }
-    // right wall
-    for (int i = maxR - 1; i >= minR; i--)
-    {
-        arr2[count] = arr[i][maxC];
-        count++;
-    }
-
-    // top wall
-    for (int j = maxC - 1; j >= minC + 1; j--)
-    {
-        arr2[count] = arr[minR][j];
-        count++;
-    }
-    return arr2;
-}
-
-void fillShellFromOned(vector<vector<int>> &arr, int s, vector<int> &arr2)
-{
-    int minR = s - 1;
-    int minC = s - 1;
-    int maxR = arr.size() - s;
-    int maxC = arr[0].size() - s;
-    int count = 0;
-
-    //   left wall
-    for (int i = minR; i <= maxR; i++)
-    {
-        arr[i][minC] = arr2[count];
-        count++;
-    }
-    // bottom wall
-    for (int j = minC + 1; j <= maxC; j++)
-    {
-        arr[minR][j] = arr2[count];
-        count++;
-    }
-    // right wall
-    for (int i = maxR - 1; i >= minR; i--)
-    {
-        arr[i][maxC] = arr2[count];
-        count++;
-    }
-
-    // top wall
-    for (int j = maxC - 1; j >= minC + 1; j--)
-    {
-        arr[minR][j] = arr2[count];
-        count++;
-    }
-}
-
-void rotateShell(vector<vector<int>> &arr, int s, int r)
-{
-    vector<int> oned = fillOnedFromShell(arr, s);
-    rotate(oned, r);
-    fillShellFromOned(arr, s, oned);
-}
-
-int main()
-{
-    int n, m, s, r;
-    cin >> n >> m;
-    vector<vector<int>> arr(n, vector<int>(m));
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = 0; j < m; j++)
-        {
-            cin >> arr[i][j];
-        }
-    }
-
-    cin >> s >> r;
-    rotateShell(arr,s,r);
-    display(arr);
-    return 0;
+    
 }
