@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class SumOfArrays{
+public class Main{
 
 public static void main(String[] args) throws Exception {
     // write your code here
@@ -20,25 +20,31 @@ public static void main(String[] args) throws Exception {
     }
     if(n2>n1)
     {
-        for(int i=0;i<n2-n1;i++)
+        int i=n1-1,j=n2-1;
+        while(i>=0 && j>=n2-n1)
         {
-            System.out.println(b[i]);
+            b[j]=a[i]+b[j];
+            i--;
+            j--;
         }
-        for(int i=0;i<n1;i++)
+        for(int k=0;k<n2;k++)
         {
-            System.out.println(a[i]+b[i+n2-n1]);
+            System.out.println(b[k]);
         }
     }
     else
     {
-        for(int i=0;i<n1-n2;i++)
+        int i=n1-1,j=n2-1;
+        while(i>=n1-n2 && j>=0)
         {
-            System.out.println(a[i]);
+            a[i]=a[i]+b[j];
+            i--;
+            j--;
         }
-        for(int i=0;i<n2;i++)
+        for(int k=0;k<n1;k++)
         {
-            System.out.println(a[i+n1-n2]+b[i]);
-        }   
+            System.out.println(a[k]);
+        }
     }
  }
 
