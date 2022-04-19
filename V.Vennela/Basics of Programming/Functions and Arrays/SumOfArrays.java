@@ -5,7 +5,7 @@ public class SumOfArrays{
 
 public static void main(String[] args) throws Exception {
     // write your code here
-    Scanner sc = new Scanner(System.in);
+     Scanner sc = new Scanner(System.in);
     int n1 = sc.nextInt();
     int a[] = new int[n1];
     for(int i=0;i<n1;i++)
@@ -18,33 +18,36 @@ public static void main(String[] args) throws Exception {
     {
         b[i]=sc.nextInt();
     }
-    if(n2>n1)
+    int sum[] = new int[n1>n2 ? n1:n2];
+    int i=n1-1;
+    int j=n2-1;
+    int k = sum.length-1;
+    int c=0;
+    while(k>=0)
     {
-        int i=n1-1,j=n2-1;
-        while(i>=0 && j>=n2-n1)
+        int d=c;
+        if(i>=0)
         {
-            b[j]=a[i]+b[j];
-            i--;
-            j--;
+            d+=a[i];
         }
-        for(int k=0;k<n2;k++)
+        if(j>=0)
         {
-            System.out.println(b[k]);
+            d+=b[j];
         }
+        c=d/10;
+        d=d%10;
+        sum[k]=d;
+        i--;
+        j--;
+        k--;
     }
-    else
+    if(c!=0)
     {
-        int i=n1-1,j=n2-1;
-        while(i>=n1-n2 && j>=0)
-        {
-            a[i]=a[i]+b[j];
-            i--;
-            j--;
-        }
-        for(int k=0;k<n1;k++)
-        {
-            System.out.println(a[k]);
-        }
+        System.out.println(c);
+    }
+    for(int x=0;x<sum.length;x++)
+    {
+        System.out.println(sum[x]);
     }
  }
 
