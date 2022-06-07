@@ -8,11 +8,8 @@ void display(int arr[], int idx, int n)
     {
         return;
     }
-    if (idx == 0)
-    {
-        cout << arr[0] << "\n";
-    }
-    display(arr + 1, idx, n - 1);
+    display(arr, idx + 1, n);
+    cout << arr[idx] << endl;
 }
 
 int main()

@@ -6,12 +6,9 @@ int factorial(int n)
     // write your code here
     if (n == 0 || n == 1)
     {
-        return n;
+        return 1;
     }
-    else
-    {
-        return n * factorial(n - 1);
-    }
+    return n * factorial(n - 1);
 }
 
 int main()
