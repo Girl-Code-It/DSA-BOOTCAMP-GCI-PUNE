@@ -22,6 +22,8 @@ using namespace std;
 //     return 0;
 // }
 //print prime factorization
+
+//spf:smallest prime factor
 int main(){
     int n;cin>>n;
     int spf[n+1];
